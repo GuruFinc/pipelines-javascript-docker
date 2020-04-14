@@ -11,11 +11,12 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'pipelines-javascript-docker'
-  imageRegistry: 'IMH Demo ACR'
+  imageName: 'javascript-docker-image'
+  registryConnection: 'IMH Demo ACR'
+  subscriptionConnection: 'IMH Demo RG'
   containerService: 'imhdemoapp'
   serviceURL: 'mhdemoacr.azurecr.io'
-  registryName: 'pipelines-javascript-docker'
+  registryName: 'javascript-docker-registry'
   tag: '4.0'
 
 steps:
@@ -25,14 +26,14 @@ steps:
     repository: $(imageName)
     command: buildAndPush
     Dockerfile: app/Dockerfile
-    containerRegistry: $(imageRegistry)
+    containerRegistry: $(registryConnection)
     tags: |
-      3.0
+      $(tag)
 ## Add the below snippet at the end of your pipeline
 - task: AzureWebAppContainer@1
   displayName: 'Azure Web App on Container Deploy'
   inputs:
-    azureSubscription: $(imageRegistry)
+    azureSubscription: $(subscriptionConnection)
     appName: $(containerService)
     containers: '$(serviceURL)/$(registryName):$(tag)'
    
