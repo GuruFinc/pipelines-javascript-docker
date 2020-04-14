@@ -12,8 +12,8 @@ pool:
 
 variables:
   imageName: 'javascript-docker-image'
-  registryConnection: 'IHM Demo ACR'
-  subscriptionConnection: 'IMH Demo RG'
+  registryConnection: 'IMH Demo ACR'
+  subscriptionConnection: 'IHM Demo RG'
   containerService: 'imhdemoapp'
   serviceURL: 'mhdemoacr.azurecr.io'
   registryName: 'javascript-docker-registry'
