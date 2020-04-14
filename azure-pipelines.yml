@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -19,3 +20,9 @@ steps:
     repository: $(imageName)
     command: build
     Dockerfile: app/Dockerfile
+
+- task: ContainerBuild@0
+  inputs:
+    dockerRegistryServiceConnection: 'IMH Demo ACR'
+    repository: 'IMHDEMOREG'
+    Dockerfile: 'Dockerfile'
