@@ -18,11 +18,10 @@ steps:
   displayName: Build an image
   inputs:
     repository: $(imageName)
-    command: build
+    command: buildAndPush
     Dockerfile: app/Dockerfile
+    containerRegistry: $(dockerRegistryServiceConnection)
+    tags: |
+      $(tag)
+   
 
-- task: ContainerBuild@0
-  inputs:
-    dockerRegistryServiceConnection: 'IMH Demo ACR'
-    repository: 'IMHDEMOREG'
-    Dockerfile: 'Dockerfile'
