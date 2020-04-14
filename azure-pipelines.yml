@@ -22,6 +22,13 @@ steps:
     Dockerfile: app/Dockerfile
     containerRegistry: 'IMH Demo ACR'
     tags: |
-      2.0
+      3.0
+## Add the below snippet at the end of your pipeline
+- task: AzureWebAppContainer@1
+  displayName: 'Azure Web App on Container Deploy'
+  inputs:
+    azureSubscription: '1-Microsoft Azure Internal Consumption'
+    appName: 'imhdemoapp'
+    containers: 'imhdemoacr.azurecr.io/pipelines-javascript-docker:3.0'
    
 
