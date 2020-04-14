@@ -20,7 +20,7 @@ steps:
     repository: $(imageName)
     command: buildAndPush
     Dockerfile: app/Dockerfile
-    containerRegistry: $(dockerRegistryServiceConnection)
+    containerRegistry: 'IMH Demo ACR'
     tags: |
       $(tag)
    
