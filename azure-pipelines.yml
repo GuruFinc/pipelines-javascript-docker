@@ -12,6 +12,11 @@ pool:
 
 variables:
   imageName: 'pipelines-javascript-docker'
+  imageRegistry: 'IMH Demo ACR'
+  containerService: 'imhdemoapp'
+  serviceURL: 'mhdemoacr.azurecr.io'
+  registryName: 'pipelines-javascript-docker'
+  tag: '4.0'
 
 steps:
 - task: Docker@2
@@ -20,15 +25,15 @@ steps:
     repository: $(imageName)
     command: buildAndPush
     Dockerfile: app/Dockerfile
-    containerRegistry: 'IMH Demo ACR'
+    containerRegistry: $(imageRegistry)
     tags: |
       3.0
 ## Add the below snippet at the end of your pipeline
 - task: AzureWebAppContainer@1
   displayName: 'Azure Web App on Container Deploy'
   inputs:
-    azureSubscription: 'IHM Demo RG'
-    appName: 'imhdemoapp'
-    containers: 'imhdemoacr.azurecr.io/pipelines-javascript-docker:3.0'
+    azureSubscription: $(imageRegistry)
+    appName: $(containerService)
+    containers: '$(serviceURL)/$(registryName):$(tag)'
    
 
