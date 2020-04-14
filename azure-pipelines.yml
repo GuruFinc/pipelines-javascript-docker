@@ -22,6 +22,6 @@ steps:
     Dockerfile: app/Dockerfile
     containerRegistry: 'IMH Demo ACR'
     tags: |
-      1.0
+      2.0
    
 
